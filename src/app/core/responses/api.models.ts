@@ -2,23 +2,18 @@
 
 
 
+
+
 export interface ApiResponse<T> {
-  data: T;
-  success: boolean;
-  message?: string;
+	count: number;
+	next: string | null;
+	previous: string | null;
+	results: T[];
 }
 
 export interface ApiListResponse<T> {
-  data: T[];
-  success: boolean;
-  message?: string;
-  pagination?: Pagination;
+	data: T[];
+	success: boolean;
+	message?: string;
 }
 //
-
-export interface Pagination {
-  total: number;
-  perPage: number;
-  currentPage: number;
-  lastPage: number;
-}

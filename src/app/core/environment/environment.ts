@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'your-api'
+  apiUrl: 'https://swapi.dev/api/'
 };
