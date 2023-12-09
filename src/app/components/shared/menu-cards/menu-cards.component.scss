@@ -1,0 +1,4 @@
+.menu_card {
+	@apply md:w-[268px] md:h-[111px] md:rounded-[6px] border border-[#444444] md:text-center md:p-10 md:shadow-2xl;
+	@apply cursor-pointer transition-all duration-500 hover:bg-jedi-blue-light hover:text-white hover:translate-y-2;
+}
