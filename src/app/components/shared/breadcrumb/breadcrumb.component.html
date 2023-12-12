@@ -1,0 +1,9 @@
+<nav class="flex p-5 m-5" *ngIf="breadcrumbs$ | async as breadcrumbs">
+	<ul *ngIf="breadcrumbs.length > 0" class="flex p-4 row-auto">
+		<li *ngFor="let breadcrumb of breadcrumbs">
+			<a class="p-2" [routerLink]="[breadcrumb.url]">
+				>{{ breadcrumb.label }}</a
+			>
+		</li>
+	</ul>
+</nav>

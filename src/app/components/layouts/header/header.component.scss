@@ -1,6 +1,6 @@
 header {
 
-	@apply md:flex md:justify-between p-4;
+	@apply md:flex md:justify-between p-5 border-b-[1.5px] border-black;
 
 	p {
 		@apply md:text-[36px];

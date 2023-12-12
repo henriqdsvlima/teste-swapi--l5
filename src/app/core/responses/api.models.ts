@@ -10,10 +10,3 @@ export interface ApiResponse<T> {
 	previous: string | null;
 	results: T[];
 }
-
-export interface ApiListResponse<T> {
-	data: T[];
-	success: boolean;
-	message?: string;
-}
-//
