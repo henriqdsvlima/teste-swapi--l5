@@ -1,8 +1,13 @@
 header {
 
-	@apply md:flex md:justify-between p-5 border-b-[1.5px] border-black;
+	@apply flex justify-between items-center p-5 border-b-[1.5px] border-black;
 
 	p {
 		@apply md:text-[36px];
+	}
+
+	.header-icon {
+		@apply w-[40px] md:w-[50px] md:h-[46] cursor-pointer;
+		@apply hover:scale-90 hover:translate-x-2 bg-transparent duration-300;
 	}
 }

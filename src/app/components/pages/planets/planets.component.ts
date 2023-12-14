@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, distinctUntilChanged } from 'rxjs';
-import { Planets } from 'src/app/core/responses/planets';
+import { Planets } from 'src/app/core/interfaces/planets';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -11,37 +11,41 @@ import { SearchService } from 'src/app/core/services/search.service';
 	styleUrls: ['./planets.component.scss']
 })
 export class PlanetsComponent implements OnInit {
-
-	planets: Planets[] = []
+	planets: Planets[] = [];
 	isLoading!: boolean
-	isSearchActive: boolean = true
-	currentPage: number = 2
+	currentPage: number = 2;
 	totalPages!: number
-	fetchingMoreData: boolean = false
-	hasNextPage: boolean = true
+	fetchingMoreData: boolean = false;
+	hasNextPage: boolean = true;
+	isSearchActive: boolean = false;
+	hideLoadData: true = true;
 
-	private subScribePlanets!: Subscription
-	private subScribeSearchPlanets!: Subscription
-	constructor(private apiService: ApiService, private router: Router, private searchService: SearchService) {
 
-	}
+	private subScribeCharacter!: Subscription
+	private subScribeSearchCharacter!: Subscription
+
+	constructor(private apiService: ApiService, private router: Router, private searchService: SearchService) { }
+
+
+
+
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.subScribePlanets = this.apiService.fetchStarwarsPlanets().subscribe(response => {
+		this.subScribeCharacter = this.apiService.fetchStarwarsPlanets().subscribe(response => {
 			this.planets = response.results;
 			this.isLoading = false;
-			this.loadMoreData()
 		});
+		this.subScribeSearchCharacter = this.onSearch('')
 	}
 
 	ngOnDestroy() {
 		//memory leak treatment
-		if (this.subScribePlanets) {
-			this.subScribePlanets.unsubscribe();
+		if (this.subScribeCharacter) {
+			this.subScribeCharacter.unsubscribe();
 		}
-		if (this.subScribeSearchPlanets) {
-			this.subScribeSearchPlanets.unsubscribe()
+		if (this.subScribeSearchCharacter) {
+			this.subScribeSearchCharacter.unsubscribe()
 		}
 	}
 
@@ -54,7 +58,13 @@ export class PlanetsComponent implements OnInit {
 		}
 	}
 
+	extractId(url: string | null | undefined): string | null {
+		if (!url) return null;
 
+		const idPattern = /\/(\d+)\/$/;
+		const match = url.match(idPattern);
+		return match ? match[1] : null;
+	}
 
 	loadMoreData() {
 		if (this.hasNextPage && !this.fetchingMoreData) {
@@ -79,7 +89,7 @@ export class PlanetsComponent implements OnInit {
 		this.isLoading = true;
 		if (term) {
 			this.isSearchActive = true
-			this.searchService.search<Planets>('planets', term).subscribe(data => {
+			this.searchService.search<Planets>('people', term).subscribe(data => {
 				this.planets = data.results;
 				this.isLoading = false;
 
@@ -90,12 +100,5 @@ export class PlanetsComponent implements OnInit {
 		} else {
 			this.isSearchActive = false
 		}
-	}
-	extractId(url: string | null | undefined): string | null {
-		if (!url) return null;
-
-		const idPattern = /\/(\d+)\/$/;
-		const match = url.match(idPattern);
-		return match ? match[1] : null;
 	}
 }

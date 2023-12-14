@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
-import { Character } from 'src/app/core/responses/character';
-import { Films } from 'src/app/core/responses/films';
-import { Starships } from 'src/app/core/responses/starships';
-import { Vehicles } from 'src/app/core/responses/vehicles';
+import { Character } from 'src/app/core/interfaces/character';
+import { Films } from 'src/app/core/interfaces/films';
+import { Vehicles } from 'src/app/core/interfaces/vehicles';
 import { ApiService } from 'src/app/core/services/api.service';
 import { BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
 

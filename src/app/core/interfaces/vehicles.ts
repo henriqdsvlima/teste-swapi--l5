@@ -1,4 +1,4 @@
-export interface IStarShips {
+export interface IVehicles {
 	name: string
 	model: string
 	manufacturer: string
@@ -9,13 +9,10 @@ export interface IStarShips {
 	passengers: string
 	cargo_capacity: string
 	consumables: string
-	hyperdrive_rating: string
-	MGLT: string
-	starship_class: string
-	pilots: any[]
+	vehicle_class: string
+	pilots: string[]
 	films: string[]
 	url?: string
-
 }
 
-export type Starships = Partial<IStarShips>
+export type Vehicles = Partial<IVehicles>

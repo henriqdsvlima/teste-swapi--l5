@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Vehicles } from 'src/app/core/responses/vehicles';
+import { Vehicles } from 'src/app/core/interfaces/vehicles';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -18,6 +18,7 @@ export class VehiclesComponent {
 	fetchingMoreData: boolean = false;
 	hasNextPage: boolean = true;
 	isSearchActive: boolean = false;
+	hideLoadData: boolean = true
 
 
 
@@ -50,7 +51,7 @@ export class VehiclesComponent {
 
 	goToVehiclesDetails(id: string | null) {
 		if (id) {
-			this.router.navigate(['/starships', id]);
+			this.router.navigate(['/vehicles', id]);
 		} else {
 			console.error('Character ID is undefined');
 			// Trate o caso em que id é undefined, como mostrar uma mensagem de erro

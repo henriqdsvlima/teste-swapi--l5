@@ -1,4 +1,4 @@
-export interface IVehicles {
+export interface ISpecies {
 	name: string
 	classification: string
 	designation: string
@@ -7,11 +7,11 @@ export interface IVehicles {
 	hair_colors: string
 	eye_colors: string
 	average_lifespan: string
-	homeworld: string
+	homeworld: string[]
 	language: string
-	pilots: string[]
+	people: string[]
 	films: string[]
-	url?: string
+	url: string
 }
 
-export type Vehicles = Partial<IVehicles>
+export type Species = Partial<ISpecies>

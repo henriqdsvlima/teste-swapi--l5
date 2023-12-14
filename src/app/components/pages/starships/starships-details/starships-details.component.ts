@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, forkJoin } from 'rxjs';
-import { Character } from 'src/app/core/responses/character';
-import { Films } from 'src/app/core/responses/films';
-import { Starships } from 'src/app/core/responses/starships';
+import { Character } from 'src/app/core/interfaces/character';
+import { Films } from 'src/app/core/interfaces/films';
+import { Starships } from 'src/app/core/interfaces/starships';
 import { ApiService } from 'src/app/core/services/api.service';
 import { BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
 
@@ -14,7 +14,7 @@ import { BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
 	styleUrls: ['./starships-details.component.scss']
 })
 export class StarshipsDetailsComponent implements OnInit {
-	starships: Starships | undefined
+	starship: Starships | undefined
 	pilots: Character[] = []
 	films: Films[] = []
 	isLoading: boolean = true;
@@ -28,7 +28,7 @@ export class StarshipsDetailsComponent implements OnInit {
 		const id = this.route.snapshot.paramMap.get('id');
 		if (id) {
 			this.apiService.fetchStarWarsStarshipsById(id).subscribe((starship) => {
-				this.starships = starship;
+				this.starship = starship;
 				if (starship && starship.name) {
 					// Aqui garantimos que tanto 'id' quanto 'character.name' não sejam undefined
 					this.breadCrumbService.updateBreadcrumbForStarships(starship.name, id);

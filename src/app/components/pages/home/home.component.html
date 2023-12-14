@@ -1,22 +1,27 @@
-<main class="flex justify-center items-center min-h-screen">
-	<div class="grid grid-cols-3 md:gap-25 lg:gap-44">
-		<div>
-			<app-menu-cards menuCardName="People" routePath="/characters" />
-		</div>
-		<div>
-			<app-menu-cards menuCardName="Planets" routePath="/planets" />
-		</div>
-		<div>
-			<app-menu-cards menuCardName="Films" routePath="/films" />
-		</div>
-		<div>
-			<app-menu-cards menuCardName="Species" routePath="/species" />
-		</div>
-		<div>
-			<app-menu-cards menuCardName="Vehicles" routePath="/vehicles" />
-		</div>
-		<div>
-			<app-menu-cards menuCardName="Starships" routePath="/starships" />
+<div class="centered-container">
+	<div class="responsive-grid">
+		<div class="grid-layout">
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards menuCardName="People" routePath="/characters" />
+			</div>
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards menuCardName="Planets" routePath="/planets" />
+			</div>
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards menuCardName="Films" routePath="/films" />
+			</div>
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards menuCardName="Species" routePath="/species" />
+			</div>
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards menuCardName="Vehicles" routePath="/vehicles" />
+			</div>
+			<div class="menu-cards bg-transparent">
+				<app-menu-cards
+					menuCardName="Starships"
+					routePath="/starships"
+				/>
+			</div>
 		</div>
 	</div>
-</main>
+</div>

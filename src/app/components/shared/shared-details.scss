@@ -1,0 +1,57 @@
+.details-card {
+	@apply md:p-10 md:m-20
+}
+
+.card-container {
+	@apply rounded-lg border border-gray-400 bg-[#f0f0f5] p-4 shadow-sm transition hover:shadow-lg;
+	@apply sm:p-6;
+	@apply bg-transparent;
+}
+
+
+.card-title {
+	@apply text-4xl font-bold mb-4;
+	@apply bg-transparent;
+}
+
+.card-content {
+	@apply mb-2;
+	@apply bg-transparent;
+}
+
+.underline-link {
+	@apply underline cursor-pointer;
+	@apply bg-transparent;
+}
+
+.loading-message {
+	@apply animate-pulse flex justify-center flex-col items-center;
+	@apply bg-transparent;
+}
+
+// .related-links-container {
+// 	@apply border border-black;
+
+// }
+
+.related-links-title {
+	@apply border-b-2 border-black items-center;
+	@apply bg-transparent;
+
+}
+
+.related-links-items {
+	@apply p-2;
+	@apply bg-transparent;
+}
+
+.flex-justify-between {
+	@apply flex justify-between p-4;
+	@apply bg-transparent;
+}
+
+.details {
+	background-image: url('/assets/planet.svg');
+	background-position: right bottom;
+	background-repeat: no-repeat, no-repeat;
+}

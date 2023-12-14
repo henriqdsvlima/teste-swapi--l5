@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Character } from 'src/app/core/responses/character';
-import { Species } from 'src/app/core/responses/species';
+import { Character } from 'src/app/core/interfaces/character';
+import { Species } from 'src/app/core/interfaces/species';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -19,6 +19,7 @@ export class SpeciesComponent {
 	totalPages!: number
 	fetchingMoreData: boolean = false;
 	hasNextPage: boolean = true;
+	hideLoadData: boolean = true
 	isSearchActive: boolean = false;
 
 

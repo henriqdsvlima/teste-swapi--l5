@@ -5,6 +5,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './loading/loading.component';
 
 
 
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 		MenuCardsComponent,
 		BreadcrumbComponent,
 		SearchFieldComponent,
+		LoadingComponent,
 	],
 	imports: [
 		CommonModule,
@@ -25,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 	exports: [
 		MenuCardsComponent,
 		BreadcrumbComponent,
-		SearchFieldComponent
+		SearchFieldComponent,
+		LoadingComponent
 	]
 })
 export class SharedModule { }

@@ -36,8 +36,12 @@ module.exports = {
           'blue-dark': '#00008b',      // Azul Escuro (Painel de Controle)
           'silver': '#c0c0c0',         // Prata (Detalhes Metálicos)
         },
-
       },
+	  backgroundImage: {
+		'planet': "url('/src/assets/planet.svg')",
+		'starfighter': "url('/src/assets/starfighter.svg')",
+		'starkiller':"url('/src/assets/starkiller.svg')"
+	}
     },
   },
   plugins: [],

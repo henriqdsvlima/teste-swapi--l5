@@ -1,15 +1,14 @@
 <main class="characters_container">
-	<div class="flex justify-between items-center p-5">
+	<div class="flex-between p-5">
 		<app-breadcrumb />
 		<app-search-field (search)="onSearch($event)"></app-search-field>
 	</div>
-	<div *ngIf="isLoading" class="">
+	<div *ngIf="isLoading">
 		<div
-			class="animate-pulse flex justify-center p-40 flex-col items-center"
+			class="animate-pulse flex flex-col items-center md:flex md:justify-center md:p-40 p-40 border border-black"
 		>
 			<svg
-				width="52"
-				height="46"
+				class="w-[35px] md:w-[52px] md:h-[46px]"
 				viewBox="0 0 52 46"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -19,50 +18,47 @@
 					fill="black"
 				/>
 			</svg>
-			<p>Carregando dados. Aguarde...</p>
+			<p class="whitespace-nowrap items-center text-sm m-4">
+				Retrieving data. Please wait...
+			</p>
 		</div>
 	</div>
 	<div
 		*ngIf="!isLoading"
-		class="p-30 m-40 bg-transparent border border-black rounded-t-2xl"
+		class="md:p-30 md:m-40 bg-transparent border border-black rounded-t-2xl"
 	>
-		<div
-			class="flex-center items-center"
-			*ngFor="let character of characters"
-		>
+		<div class="flex-center" *ngFor="let character of characters">
 			<div
-				class="border-b-2 p-10 c"
+				class="card-style"
 				(click)="goToCharacterDetails(extractId(character.url))"
 			>
 				<div
-					class="card p-8 flex justify-between cursor-pointer text-black"
+					class="md:p-20 border-b-[2px] border-jedi-grey-light min-w-full"
 				>
-					<div
-						class="p-20 border-b-[2px] border-jedi-grey-light p-5 min-w-full"
-					>
-						{{ character.name }}
-					</div>
-
-					<i class=""
-						><svg
-							width="18"
-							height="30"
-							viewBox="0 0 18 30"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M6.3731 2.77793L16.6725 13.9752C16.9239 14.2462 17.0487 14.5975 17.0487 14.9473C17.0487 15.2971 16.9239 15.6486 16.6725 15.9193L6.3731 27.1166C5.8583 27.6787 5.00398 27.697 4.46623 27.1587C3.92482 26.624 3.90721 25.7302 4.4258 25.1718L13.8758 14.8945L4.42741 4.72265C3.90884 4.16601 3.92645 3.2707 4.46784 2.73574C5.00566 2.19726 5.86123 2.21601 6.3731 2.77793Z"
-								fill="black"
-							/>
-						</svg>
-					</i>
+					{{ character.name }}
 				</div>
+
+				<i class=""
+					><svg
+						width="18"
+						height="30"
+						viewBox="0 0 18 30"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M6.3731 2.77793L16.6725 13.9752C16.9239 14.2462 17.0487 14.5975 17.0487 14.9473C17.0487 15.2971 16.9239 15.6486 16.6725 15.9193L6.3731 27.1166C5.8583 27.6787 5.00398 27.697 4.46623 27.1587C3.92482 26.624 3.90721 25.7302 4.4258 25.1718L13.8758 14.8945L4.42741 4.72265C3.90884 4.16601 3.92645 3.2707 4.46784 2.73574C5.00566 2.19726 5.86123 2.21601 6.3731 2.77793Z"
+							fill="black"
+						/>
+					</svg>
+				</i>
 			</div>
 		</div>
 		<div *ngIf="!isLoading && !isSearchActive">
 			<div class="" *ngIf="fetchingMoreData">
-				<div class="animate-pulse flex flex-row justify-center">
+				<div
+					class="animate-pulse flex flex-row justify-center items-center"
+				>
 					<svg
 						width="40"
 						height="20"
@@ -75,19 +71,38 @@
 							fill="black"
 						/>
 					</svg>
-					<span class="text-[18px]">
+					<span class="text-sm md:text-[18px]">
 						Retrieving more data. Patient, young padawan...
 					</span>
 				</div>
 			</div>
 		</div>
-		<button
-			class="m-3 p-2 border border-jedi-grey-light rounded shadow absolute flex"
-			(click)="loadMoreData()"
-			*ngIf="hasNextPage || true"
-		>
-			<!-- Remova || true após os testes -->
-			Load more data
-		</button>
+		<div class="flex justify-center" *ngIf="!hideLoadData">
+			<button
+				class="m-4 pt-2 md:mt-3 md:p-2 border border-jedi-grey-light rounded shadow md:absolute md:flex"
+				(click)="loadMoreData()"
+				*ngIf="hasNextPage || true"
+			>
+				<div
+					*ngIf="fetchingMoreData"
+					class="animate-spin border-gray-300 flex items-center justify-center rounded-full"
+				>
+					<svg
+						width="40"
+						height="20"
+						viewBox="0 0 52 46"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M50.4743 21.6703C50.4743 35.084 39.5507 46 25.9188 46C25.5351 46 25.141 45.9888 24.7569 45.9775C12.2173 45.4048 1.96175 35.2322 1.38397 22.8248C1.44265 22.2453 1.46613 21.6973 1.47696 21.1313C1.43182 20.8954 1.43182 20.6596 1.48824 20.435C1.86064 12.9887 5.66359 6.12285 11.7889 1.8373C12.15 1.579 12.5775 1.43705 13.0294 1.43705C13.7516 1.43705 14.4169 1.71557 14.8232 2.39209C15.2299 2.98012 15.3111 3.7393 15.0403 4.40234C14.5077 5.73922 14.2368 7.15426 14.2368 8.59176C14.2368 12.287 15.9629 15.6705 18.9872 17.9086C19.5176 18.2904 19.8336 18.904 19.8674 19.5554C19.9013 20.2068 19.6418 20.8357 19.1452 21.2732C16.9786 23.2156 15.7724 25.8552 15.7724 28.697C15.7724 33.3572 18.9999 37.2546 23.3449 38.4091L23.5481 33.2655L21.6856 34.535C21.2568 34.8046 20.7043 34.7597 20.3315 34.4227C19.9591 34.0746 19.8801 33.5243 20.1396 33.0859L21.7087 30.4921L18.4018 29.807C17.8931 29.7023 17.532 29.2711 17.532 28.75C17.532 28.2446 17.8931 27.7959 18.4009 27.6943L21.7078 27.0093L20.141 24.4195C19.8814 23.9815 19.9604 23.4313 20.3328 23.0827C20.7097 22.7305 21.2695 22.6855 21.6847 22.982L23.8965 24.4645L24.9077 1.0332C24.9257 0.460449 25.4222 0 25.9188 0C26.5056 0 26.9687 0.460449 26.9913 1.0332L28.0069 24.4555L30.2187 22.9623C30.6362 22.6815 31.2009 22.7264 31.5729 23.0746C31.776 23.2879 31.8888 23.5575 31.9114 23.8495C31.9001 24.0516 31.8437 24.2313 31.7534 24.411L30.1961 27.0048L33.503 27.6898C33.9995 27.7909 34.3606 28.2289 34.3606 28.7455C34.3606 29.2509 33.9995 29.6996 33.503 29.8012L30.1961 30.475L31.7534 33.0805C32.013 33.5185 31.934 34.0687 31.5729 34.4173C31.2005 34.7543 30.6358 34.7992 30.2187 34.5184L28.3572 33.2606L28.549 38.4383C32.3104 37.5008 35.2445 34.5 35.9938 30.7715C36.716 27.2676 35.5203 23.6514 32.8458 21.266C32.3492 20.828 32.0859 20.2068 32.1198 19.5437C32.1536 18.8923 32.4771 18.2895 33.0075 17.8969C36.0318 15.6732 37.7543 12.2816 37.7543 8.58906C37.7543 7.15156 37.4759 5.73293 36.9456 4.39605C36.5845 3.52008 36.8512 2.49047 37.6073 1.8957C38.3521 1.30049 39.4219 1.2845 40.201 1.83478C46.2947 6.1356 50.0774 12.9574 50.4746 20.3785C50.5423 20.6031 50.5649 20.8277 50.5197 21.0636C50.5195 21.275 50.4743 21.3918 50.4743 21.6703ZM9.74099 26.8184C9.2264 27.4203 8.31189 27.4832 7.71425 26.9531L6.19397 25.6414C7.34501 31.2234 10.8776 36.0184 15.7002 38.8754C10.4975 33.7426 10.0127 25.5336 14.5826 19.8285C11.7948 17.0883 10.1364 13.4155 9.92244 9.53242C8.64321 11.1766 7.67272 13.0273 6.97307 14.9859L9.67779 17.6759C10.242 18.2374 10.242 19.1466 9.67779 19.709C9.10904 20.2687 8.19904 20.2687 7.63481 19.6938L6.12626 18.2023C5.93442 19.2921 5.83286 20.4035 5.83286 21.5041L9.60557 24.7969C9.89897 25.0439 10.0605 25.4033 10.0943 25.7852C10.1202 26.1535 9.99376 26.5398 9.74099 26.8184ZM45.6896 25.6594L44.2813 26.9531C43.6832 27.481 42.7691 27.4136 42.2392 26.8184C41.7174 26.2254 41.7715 25.318 42.3854 24.7969L46.1988 21.4619C46.1875 20.3613 46.0859 19.2607 45.8941 18.1709L44.3494 19.6982C43.7852 20.2598 42.8716 20.2598 42.3073 19.6982C41.7431 19.1479 41.7431 18.2383 42.3073 17.6768L45.0256 14.9698C44.326 13.0157 43.3212 11.1855 42.069 9.53422C41.8433 13.42 40.184 17.0002 37.408 19.8213C40.0472 23.1078 41.0945 27.3844 40.2368 31.625C39.6726 34.3877 38.2841 36.915 36.2754 38.9023C41.1757 36.0184 44.6333 31.2117 45.6896 25.6594Z"
+							fill="black"
+						/>
+					</svg>
+				</div>
+				<!-- Remova || true após os testes -->
+				Load more data
+			</button>
+		</div>
 	</div>
 </main>

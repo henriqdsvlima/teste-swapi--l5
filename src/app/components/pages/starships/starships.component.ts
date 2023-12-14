@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Starships } from 'src/app/core/responses/starships';
+import { Starships } from 'src/app/core/interfaces/starships';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -18,6 +18,7 @@ export class StarshipsComponent {
 	fetchingMoreData: boolean = false;
 	hasNextPage: boolean = true;
 	isSearchActive: boolean = false;
+	hideLoadData: boolean = true
 
 
 

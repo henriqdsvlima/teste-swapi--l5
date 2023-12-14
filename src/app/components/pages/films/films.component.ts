@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Character } from 'src/app/core/responses/character';
-import { Films } from 'src/app/core/responses/films';
-import { Planets } from 'src/app/core/responses/planets';
-import { Species } from 'src/app/core/responses/species';
-import { Starships } from 'src/app/core/responses/starships';
-import { Vehicles } from 'src/app/core/responses/vehicles';
+import { Character } from 'src/app/core/interfaces/character';
+import { Films } from 'src/app/core/interfaces/films';
+import { Planets } from 'src/app/core/interfaces/planets';
+import { Species } from 'src/app/core/interfaces/species';
+import { Starships } from 'src/app/core/interfaces/starships';
+import { Vehicles } from 'src/app/core/interfaces/vehicles';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -23,11 +23,12 @@ export class FilmsComponent {
 	fetchingMoreData: boolean = false;
 	hasNextPage: boolean = true;
 	isSearchActive: boolean = false;
-
+	hideLoadData: boolean = true;
 
 
 	private subscribeFilms!: Subscription
 	private subscribeSearchFilms!: Subscription
+
 	constructor(private apiService: ApiService, private router: Router, private searchService: SearchService) { }
 
 

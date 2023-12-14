@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/components/shared/breadcrumb/breadcrumb.component';
-import { Character } from 'src/app/core/responses/character';
+import { Character } from 'src/app/core/interfaces/character';
 import { ApiService } from 'src/app/core/services/api.service';
 import { BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
-import { Planets } from '../../../../core/responses/planets';
-import { Films } from 'src/app/core/responses/films';
-import { Starships } from 'src/app/core/responses/starships';
+import { Planets } from '../../../../core/interfaces/planets';
+import { Films } from 'src/app/core/interfaces/films';
+import { Starships } from 'src/app/core/interfaces/starships';
 import { Observable, Subscription, forkJoin } from 'rxjs';
+import { Species } from 'src/app/core/interfaces/species';
+import { Vehicles } from 'src/app/core/interfaces/vehicles';
 
 @Component({
 	selector: 'app-characters-details',
@@ -19,6 +21,8 @@ export class CharactersDetailsComponent implements OnInit {
 	homeworld: Planets | undefined;
 	films: Films[] = [];
 	starships: Starships[] = [];
+	vehicles: Vehicles[] = []
+	species: Species[] = []
 	isLoading: boolean = true;
 	isLoadingRelatedLinks: boolean = true
 	private subscribeFetchStarWarsCharactersById!: Subscription
@@ -67,14 +71,33 @@ export class CharactersDetailsComponent implements OnInit {
 
 		// Load starships
 		character.starships?.forEach(starship => {
+
 			requests.push(this.apiService.fetchStarWarsStarshipsById(this.extractId(starship)));
+		});
+
+		character.vehicles?.forEach(vehicle => {
+
+			requests.push(this.apiService.fetchStarWarsVehiclesById(this.extractId(vehicle)));
+		});
+
+		character.species?.forEach(specie => {
+
+			requests.push(this.apiService.fetchStarWarsSpeciesById(this.extractId(specie)));
 		});
 
 		forkJoin(requests).subscribe(results => {
 			this.homeworld = results[0];
-			const filmsCount = character.films?.length || 0;
-			this.films = results.slice(1, 1 + filmsCount);
-			this.starships = results.slice(1 + filmsCount);
+			let currentIndex = 0
+			this.films = results.slice(currentIndex, currentIndex + (character.films?.length || 0));
+			currentIndex += character.films?.length || 0; // Atualiza o currentIndex
+
+			this.starships = results.slice(currentIndex, currentIndex + (character.starships?.length || 0));
+			currentIndex += character.starships?.length || 0; // Atualiza o currentIndex
+
+			this.vehicles = results.slice(currentIndex, currentIndex + (character.vehicles?.length || 0));
+			currentIndex += character.vehicles?.length || 0; // Atualiza o currentIndex
+
+			this.species = results.slice(currentIndex, currentIndex + (character.species?.length || 0));
 			this.isLoading = false;
 			this.isLoadingRelatedLinks = false
 		});
@@ -92,15 +115,51 @@ export class CharactersDetailsComponent implements OnInit {
 		}
 	}
 
-	goToFilmDetails(id: string | null) {
-		if (id) {
-			this.router.navigate([this.films, id])
+	goToFilmDetails(filmUrl: string) {
+		if (!filmUrl) {
+			console.error('Planet URL is undefined');
+			return;
+		}
+
+		const filmId = this.extractId(filmUrl);
+		if (filmId) {
+			this.router.navigate(['/films', filmId]);
 		}
 	}
 
-	goToStarshipDetails(id: string | null) {
-		if (id) {
-			this.router.navigate([this.starships, id])
+	goToStarshipDetails(starshipUrl: string) {
+		if (!starshipUrl) {
+			console.error('Planet URL is undefined');
+			return;
+		}
+
+		const starshipId = this.extractId(starshipUrl);
+		if (starshipId) {
+			this.router.navigate(['/starships', starshipId]);
+		}
+	}
+
+	goToVehicleDetails(vehicleUrl: string) {
+		if (!vehicleUrl) {
+			console.error('Planet URL is undefined');
+			return;
+		}
+
+		const vehicleId = this.extractId(vehicleUrl);
+		if (vehicleId) {
+			this.router.navigate(['/vehicles', vehicleId]);
+		}
+	}
+
+	goToSpeciesDetails(specieUrl: string) {
+		if (!specieUrl) {
+			return alert('não existe')
+
+		}
+
+		const specieId = this.extractId(specieUrl)
+		if (specieId) {
+			this.router.navigate(['/species', specieId])
 		}
 	}
 

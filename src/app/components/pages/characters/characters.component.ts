@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Character } from 'src/app/core/responses/character';
+import { Character } from 'src/app/core/interfaces/character';
 import { ApiService } from 'src/app/core/services/api.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
@@ -18,6 +18,7 @@ export class CharactersComponent implements OnInit {
 	fetchingMoreData: boolean = false;
 	hasNextPage: boolean = true;
 	isSearchActive: boolean = false;
+	hideLoadData: boolean = false
 
 
 
@@ -91,6 +92,7 @@ export class CharactersComponent implements OnInit {
 			this.searchService.search<Character>('people', term).subscribe(data => {
 				this.characters = data.results;
 				this.isLoading = false;
+				this.hideLoadData = true
 
 			}, error => {
 				// Trate os erros aqui
