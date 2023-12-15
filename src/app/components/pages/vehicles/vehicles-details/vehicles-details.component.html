@@ -1,4 +1,4 @@
-<main class="details">
+<div class="details bg-transparent">
 	<div>
 		<app-breadcrumb />
 	</div>
@@ -7,6 +7,7 @@
 		<app-loading></app-loading>
 	</div>
 
+	<!-- character-details.component.html -->
 	<div class="details-card bg-transparent">
 		<div *ngIf="vehicles" class="card-container">
 			<h2 class="card-title">{{ vehicles.name }}</h2>
@@ -43,7 +44,6 @@
 			<div class="card-content">
 				<strong>Vehicle Class: </strong> {{ vehicles.vehicle_class }}
 			</div>
-
 			<div *ngIf="isLoadingRelatedLinks" class="loading-message">
 				<div
 					class="animate-pulse flex justify-center flex-col items-center"
@@ -75,48 +75,20 @@
 					class="flex md:justify-start md:flex-row flex-col p-2 bg-transparent"
 				>
 					<div class="p-4">
-						<div *ngIf="pilots.length > 0">
-							<strong class="underline">Pilots</strong>
-							<ul>
-								<li
-									*ngFor="let pilot of pilots"
-									class="related-links-items"
-								>
-									<span
-										*ngIf="pilot.url"
-										class="underline cursor-pointer"
-										(click)="
-											goToCharacterDetails(pilot.url)
-										"
-									>
-										{{ pilot.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[films]="films"
+							(navigateToDetail)="goToFilmsDetails($event)"
+						/>
 					</div>
 
 					<div class="p-4">
-						<div *ngIf="films.length > 0">
-							<strong class="underline">Films</strong>
-							<ul>
-								<li
-									*ngFor="let film of films"
-									class="related-links-items"
-								>
-									<span
-										*ngIf="film.url"
-										class="underline cursor-pointer"
-										(click)="goToFilmsDetails(film.url)"
-									>
-										{{ film.title }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[pilots]="pilots"
+							(navigateToDetail)="goToCharacterDetails($event)"
+						/>
 					</div>
 				</div>
 			</section>
 		</div>
 	</div>
-</main>
+</div>

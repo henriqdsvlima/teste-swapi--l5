@@ -69,66 +69,23 @@
 					class="flex md:justify-start md:flex-row flex-col p-2 bg-transparent"
 				>
 					<div class="p-4">
-						<div *ngIf="films && films.length > 0">
-							<strong class="underline">Films</strong>
-							<ul>
-								<li
-									*ngFor="let film of films"
-									class="related-links-items"
-								>
-									<span
-										class="underline cursor-pointer"
-										*ngIf="film.url"
-										(click)="goToFilmDetails(film.url)"
-									>
-										{{ film.title }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[films]="films"
+							(navigateToDetail)="goToFilmDetails($event)"
+						/>
 					</div>
 
 					<div class="p-4">
-						<div *ngIf="starships">
-							<strong class="underline">Starships</strong>
-							<ul>
-								<li
-									*ngFor="let starship of starships"
-									class="related-links-items"
-								>
-									<span
-										*ngIf="starship.url"
-										(click)="
-											goToStarshipDetails(starship.url)
-										"
-										class="underline cursor-pointer"
-									>
-										{{ starship.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[starships]="starships"
+							(navigateToDetail)="goToStarshipDetails($event)"
+						/>
 					</div>
 					<div class="p-4">
-						<div *ngIf="vehicles">
-							<strong class="underline">Vehicles</strong>
-							<ul>
-								<li
-									*ngFor="let vehicle of vehicles"
-									class="related-links-items"
-								>
-									<span
-										*ngIf="vehicle.url"
-										(click)="
-											goToVehicleDetails(vehicle.url)
-										"
-										class="underline cursor-pointer"
-									>
-										{{ vehicle.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[vehicles]="vehicles"
+							(navigateToDetail)="goToVehicleDetails($event)"
+						/>
 					</div>
 				</div>
 			</section>

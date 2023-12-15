@@ -10,6 +10,7 @@ import { Starships } from 'src/app/core/interfaces/starships';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 import { Species } from 'src/app/core/interfaces/species';
 import { Vehicles } from 'src/app/core/interfaces/vehicles';
+import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
 	selector: 'app-characters-details',
@@ -29,7 +30,7 @@ export class CharactersDetailsComponent implements OnInit {
 
 
 	constructor(private route: ActivatedRoute,
-		private apiService: ApiService, private router: Router, private breadCrumbService: BreadcrumbService) {
+		private apiService: ApiService, private router: Router, private breadCrumbService: BreadcrumbService, private stateService: StateService) {
 
 	}
 	ngOnInit(): void {
@@ -100,6 +101,9 @@ export class CharactersDetailsComponent implements OnInit {
 			this.species = results.slice(currentIndex, currentIndex + (character.species?.length || 0));
 			this.isLoading = false;
 			this.isLoadingRelatedLinks = false
+			this.stateService.updateRelatedLinks({
+				films: this.films
+			})
 		});
 	}
 

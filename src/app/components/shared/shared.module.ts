@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
+import { RelatedLinksComponent } from './related-links/related-links.component';
 
 
 
@@ -18,6 +19,7 @@ import { LoadingComponent } from './loading/loading.component';
 		BreadcrumbComponent,
 		SearchFieldComponent,
 		LoadingComponent,
+		RelatedLinksComponent,
 	],
 	imports: [
 		CommonModule,
@@ -28,7 +30,8 @@ import { LoadingComponent } from './loading/loading.component';
 		MenuCardsComponent,
 		BreadcrumbComponent,
 		SearchFieldComponent,
-		LoadingComponent
+		LoadingComponent,
+		RelatedLinksComponent
 	]
 })
 export class SharedModule { }

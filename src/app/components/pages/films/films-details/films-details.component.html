@@ -68,101 +68,35 @@
 				</div>
 
 				<div class="flex md:justify-start md:flex-row flex-col p-2">
+					<app-related-links
+						[people]="characters"
+						(navigateToDetail)="goToCharacterDetails($event)"
+					/>
+
 					<div class="p-4">
-						<div *ngIf="characters.length > 0">
-							<strong class="underline">Characters:</strong>
-							<ul>
-								<li
-									class="related-links-items"
-									*ngFor="let character of characters"
-								>
-									<span
-										class="underline cursor-pointer"
-										*ngIf="character.url"
-										(click)="
-											goToCharacterDetails(character.url)
-										"
-									>
-										{{ character.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[planets]="planets"
+							(navigateToDetail)="goToPlanetDetails($event)"
+						/>
 					</div>
 
 					<div class="p-4">
-						<div *ngIf="planets.length > 0">
-							<strong class="underline">Planets:</strong>
-							<ul>
-								<li
-									class="related-links-items"
-									*ngFor="let planet of planets"
-								>
-									<span
-										class="underline cursor-pointer"
-										*ngIf="planet.url"
-										(click)="goToPlanetDetails(planet.url)"
-									>
-										{{ planet.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="p-4">
-						<div *ngIf="starships.length > 0">
-							<strong>Starships:</strong>
-							<ul>
-								<li *ngFor="let starship of starships">
-									<span
-										class="underline cursor-pointer"
-										*ngIf="starship.url"
-										(click)="
-											goToStarshipsDetails(starship.url)
-										"
-									>
-										{{ starship.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[starships]="starships"
+							(navigateToDetail)="goToStarshipsDetails($event)"
+						/>
 					</div>
 					<div class="p-4">
-						<div *ngIf="vehicles.length > 0">
-							<strong>Vehicles:</strong>
-							<ul>
-								<li *ngFor="let vehicle of vehicles">
-									<span
-										class="underline cursor-pointer"
-										*ngIf="vehicle.url"
-										(click)="
-											goToStarshipsDetails(vehicle.url)
-										"
-									>
-										{{ vehicle.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[vehicles]="vehicles"
+							(navigateToDetail)="goToVehiclesDetails($event)"
+						/>
 					</div>
 					<div class="p-4">
-						<div *ngIf="species.length > 0">
-							<strong>Species:</strong>
-							<ul>
-								<li *ngFor="let specie of species">
-									<span
-										class="underline cursor-pointer"
-										*ngIf="specie.url"
-										(click)="
-											goToStarshipsDetails(specie.url)
-										"
-									>
-										{{ specie.name }}
-									</span>
-								</li>
-							</ul>
-						</div>
+						<app-related-links
+							[species]="species"
+							(navigateToDetail)="goToSpeciesDetails($event)"
+						/>
 					</div>
 				</div>
 			</section>

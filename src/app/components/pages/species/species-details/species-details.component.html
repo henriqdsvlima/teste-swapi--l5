@@ -54,13 +54,13 @@
 			</strong>
 		</div>
 		<div class="card-content">
-			<strong>
-				{{ specie.language }}
-			</strong>
+			<strong> Language:{{ specie.language }} </strong>
 		</div>
 
-		<div *ngIf="isLoadingRelatedLinks" class="">
-			<div class="">
+		<div *ngIf="isLoadingRelatedLinks" class="loading-message">
+			<div
+				class="animate-pulse flex justify-center flex-col items-center"
+			>
 				<svg
 					width="52"
 					height="46"
@@ -75,38 +75,27 @@
 				</svg>
 			</div>
 		</div>
+		<section *ngIf="!isLoadingRelatedLinks" class="related-links-container">
+			<div class="related-links-title text-lg border-b-4">
+				<strong>Related Links</strong>
+			</div>
 
-		<div *ngIf="!isLoadingRelatedLinks">
-			<strong class="related-links-title">Related Links</strong>
-			<div class="flex justify-start">
-				<div>
-					<div *ngIf="characters.length > 0">
-						<h3>Characters:</h3>
-						<ul>
-							<li *ngFor="let character of characters">
-								<span class="underline cursor-pointer">
-									{{ character.name }}
-								</span>
-							</li>
-						</ul>
-					</div>
+			<div
+				class="flex md:justify-start md:flex-row flex-col p-2 bg-transparent"
+			>
+				<div class="p-4">
+					<app-related-links
+						[character]="characters"
+						(navigateToDetail)="goToCharacterDetails($event)"
+					/>
+				</div>
+				<div class="p-4">
+					<app-related-links
+						[films]="films"
+						(navigateToDetail)="goToFilmsDetails($event)"
+					/>
 				</div>
 			</div>
-		</div>
-
-		<div class="">
-			<div>
-				<div *ngIf="films.length > 0">
-					<h3>Films:</h3>
-					<ul>
-						<li *ngFor="let film of films">
-							<span class="underline cursor-pointer">
-								{{ film.title }}
-							</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		</section>
 	</div>
 </article>

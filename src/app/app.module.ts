@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -12,6 +12,7 @@ import { SpeciesModule } from './components/pages/species/species.module';
 import { StarshipsModule } from './components/pages/starships/starships.module';
 import { VehiclesModule } from './components/pages/vehicles/vehicles.module';
 import { FilmsModule } from './components/pages/films/films.module';
+
 
 
 

@@ -1,0 +1,100 @@
+<!--People-->
+<div *ngIf="people.length > 0">
+	<strong>Characters:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let people of people">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(people.url)"
+			>
+				{{ people.name }}
+			</span>
+		</li>
+	</ul>
+</div>
+<!--Planets-->
+<div *ngIf="planets.length > 0">
+	<strong>Planets:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let planet of planets">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(planet.url)"
+			>
+				{{ planet.name }}
+			</span>
+		</li>
+	</ul>
+</div>
+<!--Films-->
+<div *ngIf="films.length > 0">
+	<strong>Films:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let film of films">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(film.url)"
+			>
+				{{ film.title }}
+			</span>
+		</li>
+	</ul>
+</div>
+
+<!--Species-->
+<div *ngIf="species.length > 0">
+	<strong>Characters:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let specie of species">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(specie.url)"
+			>
+				{{ specie.name }}
+			</span>
+		</li>
+	</ul>
+</div>
+<!--Vehicles-->
+<div *ngIf="vehicles.length > 0">
+	<strong>Vehicles:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let vehicle of vehicles">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(vehicle.url)"
+			>
+				{{ vehicle.name }}
+			</span>
+		</li>
+	</ul>
+</div>
+<!--Starships-->
+<div *ngIf="starships.length > 0">
+	<strong>Starships:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let starship of starships">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(starship.url)"
+			>
+				{{ starship.name }}
+			</span>
+		</li>
+	</ul>
+</div>
+
+<!--Pilots-->
+<div *ngIf="pilots.length > 0">
+	<strong>Starships:</strong>
+	<ul>
+		<li class="related-links-items" *ngFor="let pilot of pilots">
+			<span
+				class="underline cursor-pointer"
+				(click)="onNavigateToDetail(pilot.url)"
+			>
+				{{ pilot.name }}
+			</span>
+		</li>
+	</ul>
+</div>
