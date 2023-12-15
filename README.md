@@ -254,11 +254,6 @@ git push origin new-feature-branch
 The project maintainers will review your changes and provide feedback or merge them into the main branch.
 
 ---
-
-## 📄 License
-
-This project is licensed under the `ℹ️  INSERT-LICENSE-TYPE` License. See the [LICENSE](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository) file for additional info.
-
 ---
 
 ## 👏 Acknowledgments
